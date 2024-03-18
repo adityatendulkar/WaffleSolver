@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Waffle</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Adjust as needed */
+        }
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            border: none;
+            text-align: center;
+            align-items: center;
+            font-size: 20px;
+            border-radius: 20px; /* You can adjust the value to control the roundness */
+            margin: 0; /* This removes the spacing */
+            vertical-align: middle; /* Align cells vertically */
+            line-height: 1; /* Ensure no extra line height */
+            position: relative; /* Position relative for child positioning */
+        }
+
+        .cell span {
+            position: absolute; /* Position the span absolutely */
+            top: 50%; /* Move the span to the middle vertically */
+            left: 50%; /* Move the span to the middle horizontally */
+            transform: translate(-50%, -50%); /* Center the span precisely */
+        }
+    </style>
+</head>
+<body>
+    {% for row in waffle.grid %}
+        {% for item in row %}
+            {% set newcolour = waffle.colours[item[1]] %}
+            <div class="cell" style="background-color: {{newcolour}}"><span>{{ item[0] }}</span></div>
+        {% endfor %}
+        <br>
+    {% endfor %}
+</body>
+</html>
